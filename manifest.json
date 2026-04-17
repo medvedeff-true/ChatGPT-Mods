@@ -1,9 +1,14 @@
 {
   "manifest_version": 3,
-  "name": "ChatGPT Quick Navigation",
-  "version": "1.0.0",
-  "description": "Быстрая навигация по вопросам пользователя в текущем чате на chatgpt.com. ⠀⠀⠀⠀⠀⠀⠀⠀ Автор - Medvedeff ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ github.com/medvedeff-true",
-  "host_permissions": ["https://chatgpt.com/*"],
+  "name": "ChatGPT Mods",
+  "version": "1.1.2",
+  "description": "Быстрая навигация по вопросам пользователя в текущем чате на chatgpt.com.",
+  "host_permissions": [
+    "https://chatgpt.com/*"
+  ],
+  "permissions": [
+    "storage"
+  ],
   "icons": {
     "16": "icons/16x16.png",
     "24": "icons/24x24.png",
@@ -22,9 +27,27 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://chatgpt.com/*"],
-      "js": ["content.js"],
-      "css": ["styles.css"],
+      "matches": [
+        "https://chatgpt.com/*"
+      ],
+      "js": [
+        "content-nav.js"
+      ],
+      "css": [
+        "styles.css"
+      ],
+      "run_at": "document_idle",
+      "all_frames": true
+    },
+    {
+      "matches": [
+        "https://chatgpt.com/*"
+      ],
+      "js": [
+        "content-temp-chat.js",
+        "content-message-meta.js",
+        "content-split-view.js"
+      ],
       "run_at": "document_idle"
     }
   ]

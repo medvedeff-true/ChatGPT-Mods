@@ -1,206 +1,227 @@
-## [Русский](#русский) | [English](#english)
+# ChatGPT-Mods
 
----
+> Formerly: **ChatGPT Quick Navigation**
 
-## Русский
+**ChatGPT-Mods** is a modular browser extension for `chatgpt.com` that upgrades the ChatGPT interface with power-user features: question navigation, split-screen chats, temporary chat saving, always-visible timestamps, and smarter attachment UX.
 
-# ChatGPT Quick Navigation
+Этот проект вырос из маленького расширения для навигации по длинным чатам и превратился в набор практичных модификаций интерфейса ChatGPT для тех, кому не хватает штатных возможностей сайта.
 
-> Я устал крутить колёсико как бешеный чтобы найти нужный мне старый вопрос в чате, но OpenAi почему-то не хотят добавлять эту фичу официально, поэтому от безысходности я сам доработал интерфейс ChatGPT, чтобы можно было комфортнее перемещаться по чату.
+## Что Это Такое
 
-**ChatGPT Quick Navigation** — это минималистичное расширение для браузера, которое добавляет удобную навигацию по вопросам пользователя в текущем чате на `chatgpt.com`.
+**ChatGPT-Mods** добавляет несколько независимых UI-модов поверх стандартного интерфейса ChatGPT:
 
-Расширение автоматически создаёт компактную панель с маркерами всех ваших вопросов и позволяет мгновенно перемещаться по диалогу без бесконечного скролла.
+- **Question Navigation**: компактная навигация по сообщениям пользователя в длинных чатах.
+- **Split View**: режим двух чатов на одном экране с регулируемой шириной колонок.
+- **Temporary Chat Saver**: сохранение временного чата в новый обычный чат.
+- **Message Meta**: постоянное отображение времени сообщений и удобный показ прикреплённых файлов в composer.
 
----
+Проект работает прямо в DOM страницы, не использует сторонние API и не отправляет данные во внешние сервисы.
 
-## 🖼 Интерфейс
+## Основные Возможности
 
-<img width="59" height="301" alt="image" src="https://github.com/user-attachments/assets/f03bd025-f874-49cc-aa0f-c7257cba7476" />
-👈Слайдер
-<img width="352" height="366" alt="image" src="https://github.com/user-attachments/assets/ceb2bf55-23fb-446e-a434-42da4fc1f062" />
-👈Развёрнутый
-<img width="465" height="356" alt="image" src="https://github.com/user-attachments/assets/ea7da5f4-bded-4476-98ef-3e4cbeac3add" />
-👈Подробное описание вопроса
+### 1. Навигация По Вопросам
 
----
+Модуль навигации создаёт вертикальную панель с метками всех сообщений пользователя в текущем чате.
 
-## 🧩 Возможности
+Что умеет:
 
-- 📍 Автоматическое определение всех вопросов пользователя в чате
-- 🧭 Быстрая навигация по вопросам одним кликом
-- 🔵 Живая подсветка текущего вопроса при прокрутке страницы
-- 📌 Активный маркер всегда синхронизирован с положением в чате
-- 🪄 Автоматическая прокрутка списка навигации при выходе за пределы видимой области
-- 📝 Показ полного текста вопроса при удержании курсора
-- 🌗 Поддержка светлой и тёмной темы
-- ⚡ Работа без лишних кнопок и перегруженного интерфейса
-- 🧠 Корректная работа даже в больших чатах с файлами и изображениями
+- автоматически находит пользовательские сообщения;
+- показывает компактные маркеры справа;
+- синхронизирует активную метку с текущей позицией скролла;
+- плавно прокручивает чат к выбранному сообщению по клику;
+- показывает полный текст вопроса при удержании курсора;
+- корректно ведёт себя и в больших чатах, и в маленьких диалогах;
+- работает в обычном режиме и внутри split view.
 
----
+### 2. Split View Для Двух Чатов
 
-## 🚀 Как это работает
+Модуль split view открывает полноэкранный режим с двумя независимыми чатами рядом.
 
-После установки расширение:
+Что умеет:
 
-1. Анализирует текущий чат
-2. Находит все сообщения пользователя
-3. Строит компактный вертикальный список маркеров
-4. Синхронизирует активный вопрос с текущим положением страницы
-5. Позволяет быстро прыгать к любому месту диалога
+- открывает текущий чат слева;
+- открывает новый чат справа;
+- даёт перетаскиваемый разделитель между панелями;
+- позволяет быстро закрыть split view одной кнопкой;
+- скрывает лишние оверлеи поверх split-режима, чтобы интерфейс был чище;
+- повторно инициализирует навигацию внутри iframe-панелей после загрузки.
 
----
+Это удобно, когда нужно:
 
-## 📦 Установка (пока вручную)
+- сравнивать ответы из разных чатов;
+- продолжать старый диалог и параллельно вести новый;
+- переносить информацию между двумя контекстами;
+- работать с длинным основным чатом и отдельным “рабочим” черновиком.
 
-Расширение пока не опубликовано в Chrome Web Store, поэтому установка выполняется вручную.
+### 3. Сохранение Временного Чата
 
-### 🔧 Шаги установки:
+Когда ChatGPT открыт во **временном чате**, расширение добавляет кнопку **`Сохранить`** в шапку интерфейса.
 
-1. Скачайте или клонируйте репозиторий:
-   ```
-   git clone https://github.com/medvedeff-true/chatgpt-quick-navigation.git
-   ```
+Сценарий работы:
 
-2. Откройте в Chrome:
-   ```
-   chrome://extensions
-   ```
+1. Расширение определяет, что открыт temporary chat.
+2. Из DOM собирается история сообщений.
+3. Для каждого сообщения сохраняются:
+   - роль автора (`Пользователь` / `ChatGPT`);
+   - текст сообщения;
+   - имена файлов, если они есть;
+   - ссылки или текстовые дескрипторы изображений, если они доступны.
+4. Открывается новый обычный чат в новой вкладке.
+5. История временного чата вставляется в composer в структурированном виде.
+6. Сообщение отправляется автоматически, чтобы новый чат уже был сохранён как обычный.
 
-3. Включите **Режим разработчика** (справа сверху)
+Важно понимать нюанс:
 
-4. Нажмите **Загрузить распакованное расширение**
+- это **не серверная конвертация** temporary chat в normal chat;
+- это **автоматический перенос контекста** в новый обычный чат через структурированный prompt;
+- файлы и изображения переносятся настолько полно, насколько это позволяет текущий DOM ChatGPT;
+- бинарные вложения не “перезаливаются” на сервер заново, если сайт не предоставляет такой возможности напрямую.
 
-5. Выберите папку проекта
+То есть мод сохраняет не внутренний скрытый идентификатор чата, а сам полезный контекст переписки в максимально пригодной для продолжения форме.
 
-6. Готово ✅
+### 4. Время Под Сообщениями
 
-После этого расширение автоматически начнёт работать на `https://chatgpt.com`
+Модуль message meta добавляет постоянное отображение времени под сообщениями без необходимости открывать дополнительное меню.
 
----
+Что делает:
 
-## 📁 Структура проекта
+- пытается извлечь timestamp из React props и доступного DOM;
+- при необходимости использует conversation data текущего чата;
+- отображает время рядом с action-row сообщения, если это возможно;
+- если текущая разметка ChatGPT мешает такому встраиванию, выводит время в отдельном стабильном footer-блоке сообщения.
 
+Это сделано специально с запасом на нестабильную разметку ChatGPT, которая может меняться со временем.
+
+### 5. Умный Показ Прикреплённых Файлов
+
+Если к сообщению в composer прикреплено несколько файлов, расширение добавляет компактную кнопку-индикатор, которая показывает список имён файлов в tooltip.
+
+Нюансы:
+
+- мод старается не тащить мусорный текст;
+- фильтрует служебные подписи вроде `Delete` / `Remove`;
+- показывает подсказку только когда это действительно полезно, а не засоряет интерфейс всегда.
+
+## Почему Это Не Просто “Ещё Один CSS-Твик”
+
+Проект не ограничивается косметикой. Это набор JS-модулей, которые:
+
+- отслеживают изменения DOM;
+- адаптируются к динамической разметке ChatGPT;
+- работают с обычными чатами и временными чатами;
+- умеют переносить состояние между вкладками;
+- встраиваются в основной интерфейс и split view;
+- стараются деградировать мягко, если часть разметки сайта изменилась.
+
+## Установка
+
+Расширение пока устанавливается вручную как unpacked extension.
+
+### Chrome / Chromium
+
+1. Склонируйте репозиторий или скачайте его архивом:
+
+```bash
+git clone https://github.com/<your-username>/ChatGPT-Mods.git
 ```
-chatgpt-nav-extension/
-│
+
+2. Откройте:
+
+```text
+chrome://extensions
+```
+
+3. Включите **Developer mode**.
+4. Нажмите **Load unpacked** / **Загрузить распакованное расширение**.
+5. Выберите папку проекта.
+6. Откройте `https://chatgpt.com/`.
+
+Если расширение уже было загружено раньше, после обновления файлов используйте кнопку **Reload** на странице расширений и затем обновите вкладку ChatGPT.
+
+## Совместимость И Ограничения
+
+- Расширение рассчитано на `https://chatgpt.com/*`.
+- Используется `Manifest V3`.
+- Интерфейс ChatGPT регулярно меняется, поэтому некоторые селекторы и точки интеграции могут требовать обновления.
+- Temporary chat saving работает через перенос контекста в новый чат, а не через скрытый внутренний API миграции чатов.
+- Отображение времени сообщений зависит от того, какие данные в конкретный момент доступны в DOM или conversation payload.
+- Split view основан на iframe-панелях с тем же origin и может потребовать адаптации, если ChatGPT изменит ограничения встраивания.
+
+## Приватность И Безопасность
+
+Проект спроектирован как локальное клиентское расширение.
+
+Что важно:
+
+- не использует сторонние API;
+- не отправляет данные на внешний backend;
+- не собирает аналитику;
+- не внедряет рекламу;
+- работает только на `chatgpt.com`.
+
+Разрешение `storage` используется локально и нужно в том числе для временной передачи payload между вкладками при сохранении temporary chat. Эти данные живут ограниченное время и удаляются после использования.
+
+## Архитектура Проекта
+
+Текущая версия разбита на отдельные content scripts:
+
+```text
+.
 ├── manifest.json
-├── content.js
 ├── styles.css
+├── content-nav.js
+├── content-split-view.js
+├── content-temp-chat.js
+├── content-message-meta.js
 └── icons/
-    ├── 16x16.png
-    ├── 24x24.png
-    ├── 32x32.png
-    ├── 48x48.png
-    └── 128x128.png
 ```
 
----
+### Назначение Модулей
 
-## 🛠 Технические детали
+- `content-nav.js` — навигация по сообщениям пользователя, активные маркеры, tooltip и синхронизация со скроллом.
+- `content-split-view.js` — split screen overlay, iframe-панели, draggable divider и кнопка закрытия.
+- `content-temp-chat.js` — логика temporary chat, сбор истории, перенос контекста в новую вкладку, UI кнопки `Сохранить`.
+- `content-message-meta.js` — timestamps под сообщениями и helper для списка прикреплённых файлов.
+- `styles.css` — базовые стили, подключаемые вместе с навигацией.
 
-- Manifest Version: 3
-- Работает только на `chatgpt.com`
-- Не отправляет данные никуда
-- Не использует сторонние API
-- Не хранит данные пользователя
-- Полностью работает локально в браузере
+## Для Кого Этот Проект
 
----
+**ChatGPT-Mods** особенно полезен, если вы:
 
-## 🔒 Безопасность и приватность
+- ведёте длинные рабочие чаты;
+- часто возвращаетесь к старым вопросам;
+- сравниваете несколько разговоров параллельно;
+- используете temporary chat, но хотите уметь сохранять полезные диалоги;
+- работаете с файлами и хотите меньше визуального шума;
+- хотите получить “power-user” интерфейс без отдельного клиентского приложения.
 
-Расширение:
-- ❌ Не собирает данные
-- ❌ Не передаёт информацию третьим лицам
-- ❌ Не вмешивается в работу аккаунта
-- ✅ Работает исключительно с DOM текущей страницы
+## Roadmap И Идеи Для Развития
 
-Код полностью открыт — вы можете проверить его самостоятельно.
+Потенциальные направления:
 
----
+- дополнительные UI-моды для истории чатов;
+- быстрые действия для отдельных сообщений;
+- улучшенная работа с изображениями и вложениями;
+- кастомизация модулей через настройки;
+- более гибкое включение и выключение отдельных фич.
 
-<br><br><br>
+## English Summary
 
----
+**ChatGPT-Mods** is a modular browser extension for `chatgpt.com` that adds:
 
-## English
+- question-based chat navigation;
+- split-screen chats with a resizable divider;
+- temporary chat saving into a new regular chat;
+- always-visible message timestamps;
+- cleaner attachment info in the composer.
 
-# ChatGPT Quick Navigation
+### Important Notes
 
-> I got tired of scrolling like crazy trying to find an old question in long ChatGPT conversations. Since OpenAI doesn’t seem to be adding this feature officially, I decided to extend the interface myself to make navigation more comfortable.
+- This project is **DOM-driven**, so it may need updates when ChatGPT changes its UI.
+- Temporary chat saving is implemented as a **structured context transfer**, not as an official server-side chat conversion.
+- No external APIs, no analytics, no tracking.
+- Everything runs locally in the browser.
 
-**ChatGPT Quick Navigation** is a lightweight browser extension that adds fast question-based navigation inside ChatGPT conversations on `chatgpt.com`.
+## License
 
-It automatically builds a compact navigation sidebar showing all your questions and keeps it synchronized with your current scroll position.
-
----
-
-## 🖼 Interface
-
-<img width="59" height="301" alt="image" src="https://github.com/user-attachments/assets/f03bd025-f874-49cc-aa0f-c7257cba7476" />
-👈Slider
-<img width="352" height="366" alt="image" src="https://github.com/user-attachments/assets/ceb2bf55-23fb-446e-a434-42da4fc1f062" />
-👈Open hover
-<img width="465" height="356" alt="image" src="https://github.com/user-attachments/assets/ea7da5f4-bded-4476-98ef-3e4cbeac3add" />
-👈Descriptions of selected questions
-
----
-
-## 🧩 Features
-
-- 📍 Automatically detects all user messages
-- 🧭 One-click navigation to any question
-- 🔵 Live highlight of the currently visible question
-- 📌 Scroll-synced active marker
-- 🪄 Auto-scroll of navigation list when needed
-- 📝 Full question tooltip on hover
-- 🌗 Dark and light theme support
-- ⚡ Minimal and non-intrusive UI
-- 🧠 Works correctly in large chats (including images/files)
-
----
-
-## 📦 Installation (Manual)
-
-The extension is not yet published to Chrome Web Store.
-
-### Steps:
-
-1. Clone or download the repository
-2. Open:
-   ```
-   chrome://extensions
-   ```
-3. Enable **Developer mode**
-4. Click **Load unpacked**
-5. Select the project folder
-
-Done ✅
-
-The extension will now work on `https://chatgpt.com`.
-
----
-
-## 🛠 Technical Info
-
-- Manifest v3
-- Works only on chatgpt.com
-- No tracking
-- No external API calls
-- No data storage
-- 100% client-side
-
----
-
-## 🔒 Privacy
-
-This extension:
-- Does NOT collect any user data
-- Does NOT send anything to external servers
-- Works entirely inside the browser
-
-Open source and transparent.
-
----
-
+This repository is distributed under the license included in [LICENSE](./LICENSE).
