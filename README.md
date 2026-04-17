@@ -38,8 +38,6 @@ git clone https://github.com/medvedeff-true/ChatGPT-Mods.git
 4. Выберите папку репозитория
 5. Откройте `https://chatgpt.com/`
 
-**Обновление:** после изменения файлов нажмите **Reload** на странице расширений и обновите вкладку ChatGPT.
-
 ---
 
 ## Структура
